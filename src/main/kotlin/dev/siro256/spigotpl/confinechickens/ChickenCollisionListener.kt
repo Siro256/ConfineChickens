@@ -6,6 +6,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.world.ChunkLoadEvent
+import org.bukkit.event.world.WorldLoadEvent
 
 object ChickenCollisionListener: Listener {
     @EventHandler
@@ -18,6 +19,14 @@ object ChickenCollisionListener: Listener {
     fun onLoadChunk(event: ChunkLoadEvent) {
         event.chunk.entities.forEach {
             if (it.type != EntityType.CHICKEN) return
+            ConfineChickens.nonCollisionTeam.addEntry(it.uniqueId.toString())
+        }
+    }
+
+    @EventHandler
+    fun onLoadWorld(event: WorldLoadEvent) {
+        event.world.entities.forEach {
+            if (it.type != EntityType.CHICKEN) return@forEach
             ConfineChickens.nonCollisionTeam.addEntry(it.uniqueId.toString())
         }
     }
