@@ -1,0 +1,5 @@
+name: "@name@"
+version: "@version@"
+author: "Siro_256 @ffffff_256"
+main: "dev.siro256.spigotpl.confinechickens.ConfineChickens"
+api-version: "1.17"
