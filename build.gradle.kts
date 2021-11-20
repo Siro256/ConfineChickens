@@ -1,3 +1,6 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.6.0"
 }
@@ -12,6 +15,9 @@ repositories {
 dependencies {
     //Kotlin
     implementation(kotlin("stdlib"))
+
+    //Spigot
+    implementation("org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT")
 }
 
 configurations.all {
@@ -29,6 +35,17 @@ tasks {
     withType<ProcessResources> {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
         filteringCharset = "UTF-8"
+
+        from(sourceSets.main.get().resources.srcDirs) {
+            include("plugin.yml")
+
+            filter<ReplaceTokens>(
+                "tokens" to mapOf(
+                    "name" to project.name,
+                    "version" to version
+                )
+            )
+        }
 
         from(projectDir) {
             include("LICENSE")
