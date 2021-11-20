@@ -14,6 +14,8 @@ class ConfineChickens: JavaPlugin() {
             }
         }
 
+        server.pluginManager.registerEvents(ChickenCollisionListener, this)
+
         server.consoleSender.sendMessage("[ConfineChickens] ${ChatColor.GREEN}ConfineChickens enabled.")
     }
 
