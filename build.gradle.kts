@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib"))
+    api(kotlin("stdlib"))
 
     //Spigot
     implementation("org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT")
