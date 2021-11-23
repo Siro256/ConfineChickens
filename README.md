@@ -1,6 +1,6 @@
 # ConfineChickens
 ![Build status](https://github.com/Siro256/ConfineChickens/actions/workflows/build.yml/badge.svg)
-![Latest version](https://img.shields.io/badge/Latest-1.0.1-blue "Latest")<br>
+![Latest version](https://img.shields.io/badge/Latest-1.0.2-blue "Latest")<br>
 「世の鶏よ、働け」
 ## Overview
 ワールド上の鶏の当たり判定を削除することにより、<br>
