@@ -6,6 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scoreboard.Team
 
 class ConfineChickens: JavaPlugin() {
+    init {
+        instance = this
+    }
     override fun onEnable() {
         nonCollisionTeam = if (server.scoreboardManager!!.mainScoreboard.getTeam("nonCollisionTeam") != null) {
             server.scoreboardManager!!.mainScoreboard.getTeam("nonCollisionTeam")!!
@@ -33,6 +36,7 @@ class ConfineChickens: JavaPlugin() {
     }
 
     companion object {
+        lateinit var instance: ConfineChickens
         lateinit var nonCollisionTeam: Team
     }
 }
