@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.siro256.spigotpl.confinechickens"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     maven { url = uri("https://repo.siro256.dev/repository/maven-public/") }
@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib"))
+    api(kotlin("stdlib"))
 
     //Spigot
     implementation("org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT")
