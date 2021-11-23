@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.siro256.spigotpl.confinechickens"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     maven { url = uri("https://repo.siro256.dev/repository/maven-public/") }
