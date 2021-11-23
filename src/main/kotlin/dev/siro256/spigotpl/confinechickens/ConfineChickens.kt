@@ -6,6 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scoreboard.Team
 
 class ConfineChickens: JavaPlugin() {
+    init {
+        instance = this
+    }
     override fun onEnable() {
         nonCollisionTeam = if (server.scoreboardManager!!.mainScoreboard.getTeam("nonCollisionTeam") != null) {
             server.scoreboardManager!!.mainScoreboard.getTeam("nonCollisionTeam")!!
@@ -17,22 +20,25 @@ class ConfineChickens: JavaPlugin() {
 
         server.pluginManager.registerEvents(ChickenCollisionListener, this)
 
-        //Load spawn-chunk entities
-        server.worlds.forEach { world ->
-            world.entities.forEach forEachEntity@{
-                if (it.type != EntityType.CHICKEN) return@forEachEntity
-                nonCollisionTeam.addEntry(it.uniqueId.toString())
+        server.scheduler.runTaskLater(this, Runnable {
+            //Load spawn-chunk entities
+            server.worlds.forEach { world ->
+                world.entities.forEach forEachEntity@{
+                    if (it.type != EntityType.CHICKEN) return@forEachEntity
+                    nonCollisionTeam.addEntry(it.uniqueId.toString())
+                }
             }
-        }
+        }, 10)
 
         server.consoleSender.sendMessage("[ConfineChickens] ${ChatColor.GREEN}ConfineChickens enabled.")
     }
 
     override fun onDisable() {
-        server.consoleSender.sendMessage("[ConfineChickens] ${ChatColor.RED}ConfineChickens enabled.")
+        server.consoleSender.sendMessage("[ConfineChickens] ${ChatColor.RED}ConfineChickens disabled.")
     }
 
     companion object {
+        lateinit var instance: ConfineChickens
         lateinit var nonCollisionTeam: Team
     }
 }
